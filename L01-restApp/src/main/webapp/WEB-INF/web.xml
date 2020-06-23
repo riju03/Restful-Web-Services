@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This web.xml file is not required when using Servlet 3.0 container,
+     see implementation details http://jersey.java.net/nonav/documentation/latest/jax-rs.html -->
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+    <servlet>
+        <servlet-name>Jersey Web Application</servlet-name>
+        <!-- class handling servlet request -->
+        <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+        <init-param>
+        <!-- init param provide packages to register classes, it will specify our servlet container 
+        the package where servlet will look for annotations so all the classes inside org.study package will be scanned -->
+            <param-name>jersey.config.server.provider.packages</param-name>
+            <param-value>org.study</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <!-- using this mapping we are asking JAX-RS to handle all the request we are recieving via given URI pattern
+    It specifies which all request this servlet will handle, here we are handling all the request which is recieved via
+    this servlet 
+    
+    We are handling all the request via servlet so it will not load index.jsp-->
+    <servlet-mapping>
+        <servlet-name>Jersey Web Application</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+</web-app>
